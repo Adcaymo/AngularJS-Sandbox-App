@@ -9,6 +9,8 @@ import { User } from './../../models/User';
 })
 export class UsersComponent implements OnInit {
   users: User[];
+  showExtended: boolean;
+  loaded: boolean;
 
   constructor() { }
 
@@ -46,15 +48,12 @@ export class UsersComponent implements OnInit {
       }
     ];
 
+    this.loaded = true;
+    this.showExtended = true;
+
     this.addUser({
       firstName: 'Lisa',
-      lastName: 'Marie',
-      age: 30,
-      address: {
-        street: '12 Wake Street',
-        city: 'Miami',
-        state: 'FL'
-      }
+      lastName: 'Marie'
     });
   }
 
