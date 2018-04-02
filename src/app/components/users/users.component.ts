@@ -56,11 +56,16 @@ export class UsersComponent implements OnInit {
     ];
 
     this.loaded = true;
-    this.showExtended = true;
+    this.showExtended = false;
     this.enableAdd = true;
   }
 
   addUser(user: User) {
     this.users.push(user);
+  }
+
+  fireEvent(e) {
+    // console.log('Button clicked');
+    console.log(e.type);
   }
 }
