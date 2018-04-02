@@ -12,6 +12,7 @@ export class UsersComponent implements OnInit {
   showExtended: boolean;
   loaded: boolean;
   enableAdd: boolean;
+  showUserForm: boolean;
 
   constructor() { }
 
@@ -61,6 +62,7 @@ export class UsersComponent implements OnInit {
     this.loaded = true;
     this.showExtended = true;
     this.enableAdd = true;
+    this.showUserForm = false;
   }
 
   addUser(user: User) {
@@ -70,4 +72,14 @@ export class UsersComponent implements OnInit {
   // toggleHide(user: User) {
   //   user.hide = !user.hide;
   // }
+
+  onSubmit(e) {
+    console.log('Submit clicked');
+    e.preventDefault();
+  }
+
+  fireEvent(e) {
+    console.log(e.type);
+    console.log(e.target.value);
+  }
 }
