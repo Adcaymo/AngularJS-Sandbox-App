@@ -8,6 +8,7 @@ import { User } from './../../models/User';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  user: User;
   users: User[];
   showExtended: boolean;
   loaded: boolean;
@@ -17,6 +18,16 @@ export class UsersComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.user = {
+      firstName: '',
+      lastName: '',
+      age: null,
+      address: {
+        street: '',
+        city: '',
+        state: ''
+      }
+    };
     this.users = [
       {
         firstName: 'Jane',
@@ -61,12 +72,24 @@ export class UsersComponent implements OnInit {
 
     this.loaded = true;
     this.showExtended = true;
-    this.enableAdd = true;
+    this.enableAdd = false;
     this.showUserForm = false;
   }
 
-  addUser(user: User) {
-    this.users.push(user);
+  addUser() {
+    this.user.isActive = true;
+    this.user.registered = new Date();
+    this.users.unshift(this.user);
+    this.user = {
+      firstName: '',
+      lastName: '',
+      age: null,
+      address: {
+        street: '',
+        city: '',
+        state: ''
+      }
+    };
   }
 
   // toggleHide(user: User) {
