@@ -17,6 +17,7 @@ export class UsersComponent implements OnInit {
   enableAdd: boolean;
   showUserForm: boolean;
   @ViewChild('userForm') form: any;
+  data: any;
 
   constructor(private dataService: DataService) { }
 
@@ -26,19 +27,24 @@ export class UsersComponent implements OnInit {
       lastName: '',
       email: ''
     };
-    this.users = this.dataService.getUsers();
-    this.loaded = true;
+    this.dataService.getData().subscribe(data => {
+      console.log(data);
+    });
+    this.dataService.getUsers().subscribe(users => {
+      this.users = users;
+      this.loaded = true;
+    });
     this.showExtended = true;
-    this.enableAdd = false;
     this.showUserForm = false;
+    this.enableAdd = false;
   }
 
   onSubmit({value, valid}: {value: User, valid: boolean}) {
     if (!valid) {
       console.log('Form is not valid');
     } else {
-      value.isActive = true;
       value.registered = new Date();
+      value.isActive = true;
       value.hide = true;
       this.dataService.addUser(value);
       this.form.reset();
